@@ -12,6 +12,17 @@ Object.defineProperty(Array, "empty", {
 });
 
 /**
+ * @name null
+ * @memberof Object
+ *
+ * new empty object
+ */
+Object.defineProperty(Object, "null", {
+	get: () => Object.create(null),
+	enumerable: false
+});
+
+/**
  * This returns a copy of the array but with the elements grouped into tuples (arrays).
  * This can operate in three modes. By default, this operates in strict mode; a TypeError is thrown if the array length is not divisible by the tuple size. In exclusive mode, any elements that do not completely fill a tuple is excluded from the output array. In inclusive mode, all elements are returned, but the last tuple may be missing elements.
  *
