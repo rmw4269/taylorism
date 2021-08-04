@@ -22,3 +22,36 @@ Math.median = (...values) => values.length === 0
 		? (values[a.length / 2 - 1] + values[a.length / 2]) / 2
 		: values[(values.length - 1) / 2];
 
+/**
+ * This counts the occurrences of each element and returns in a sealed array all that occurred the most. The output array has two additional properties to convey the result.
+ * The `frequency` property is the most occurrences of any element.
+ * The `sampleSize` property is the quantity of arguments/elements originally given.
+ *
+ * @return mathematical modes of the given values
+ */
+Math.mode = (...values) => {
+	let frequencies = new Map();
+	let freqMax;
+	for (let value of values) {
+		let frequency = (frequencies.get(value) ?? 0) + 1;
+		if (freqMax == undefined || freqMax < frequency) {
+			freqMax = frequency;
+		}
+		frequencies.set(value, frequency);
+	}
+	return Object.seal(
+		Object.defineProperties(
+			[...frequencies.entries()]
+			.filter(entry => entry[1] == freqMax)
+			.map(entry => entry[0]),
+			{
+				"frequency": {
+					value: freqMax
+				},
+				"sampleSize": {
+					value: values.length
+				}
+			}
+		)
+	);
+};
