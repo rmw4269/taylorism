@@ -3,6 +3,8 @@
 /**
  * @name empty
  * @memberof Array
+ * @kind member
+ * @type Array
  *
  * empty immutable array
  */
@@ -14,6 +16,8 @@ Object.defineProperty(Array, "empty", {
 /**
  * @name null
  * @memberof Object
+ * @kind member
+ * @type Object
  *
  * new empty object
  */
