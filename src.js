@@ -48,6 +48,18 @@ Object.defineProperty(Object, "null", {
 });
 
 /**
+ * This filters out duplicate elements from the array, returning a new array of just the unique values.
+ * If the comparator argument is given, it is used to determine uniqueness. The comparator is passed in two elements; only a truthy output indicates that the elements are identical.
+ * If no comparator is given, then the same uniqueness logic used by Set is applied.
+ *
+ * @param {Function} comparator equality indicator for elements
+ */
+Array.prototype.unique = function(comparator) { return comparator instanceof Function ? this.reduce((uniques, current) => {
+	(uniques.length > 0 && uniques.some(unique => comparator(unique, current))) || uniques.push(current);
+	return uniques;
+}, []) : [...new Set(this)]};
+
+/**
  * This generates and returns an array of linearly sequential numbers.
  *
  * @param {?Number} length length of array to return
