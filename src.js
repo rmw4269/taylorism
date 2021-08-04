@@ -48,6 +48,21 @@ Object.defineProperty(Object, "null", {
 });
 
 /**
+ * This generates and returns an array of linearly sequential numbers.
+ *
+ * @param {?Number} length length of array to return
+ * @param {?Number} start first element of the array
+ * @param {?Number} spacing increment amount from one element to the next
+ * @param {?Function} map mapping function to apply to the output as in Array.prototype.map
+ */
+Array.range = (length = 1, start = 0, spacing = 1, map = undefined) => Array.from((function*(){
+	while (length-- > 0) {
+		yield start;
+		start += spacing;
+	}
+})(), map);
+
+/**
  * This returns a copy of the array but with the elements grouped into tuples (arrays).
  * This can operate in three modes. By default, this operates in strict mode; a TypeError is thrown if the array length is not divisible by the tuple size. In exclusive mode, any elements that do not completely fill a tuple is excluded from the output array. In inclusive mode, all elements are returned, but the last tuple may be missing elements.
  *
