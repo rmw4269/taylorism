@@ -118,3 +118,11 @@ String.prototype.replaceFor = function(...replacements) {
 String.prototype.replaceAllFor = function(...replacements) {
 	return replacements.reduce((str, replacement) => str.replaceAll(...replacement), this);
 };
+
+/**
+ * This clamps the input number to be inclusively within the min and max values.
+ *
+ * @param {?Number} min minimum value
+ * @param {?Number} max maximum value
+ */
+Math.clamp = (value, min = Number.NEGATIVE_INFINITY, max = Number.POSITIVE_INFINITY) => Math.min(Math.max(min, value), max);
