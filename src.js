@@ -1,6 +1,27 @@
 "use strict";
 
 /**
+ * @alias NodeList_convenience
+ *
+ * This code applies many convenience functions to NodeList instances, copying them from the Array prototype, if they exist. These functions will simply convert a NodeList to an Array via iteration, before calling the normal Array function.
+ * @see Array.prototype.every
+ * @see Array.prototype.filter
+ * @see Array.prototype.find
+ * @see Array.prototype.findIndex
+ * @see Array.prototype.flatMap
+ * @see Array.prototype.includes
+ * @see Array.prototype.indexOf
+ * @see Array.prototype.lastIndexOf
+ * @see Array.prototype.map
+ * @see Array.prototype.reduce
+ * @see Array.prototype.reduceRight
+ * @see Array.prototype.reverse
+ * @see Array.prototype.slice
+ * @see Array.prototype.some
+ */
+["every", "filter", "find", "findIndex", "flatMap", "includes", "indexOf", "lastIndexOf", "map", "reduce", "reduceRight", "reverse", "slice", "some"].forEach(name => Array.prototype[name] instanceof Function && Nodelist.prototype[name] === undefined && (NodeList.prototype[name] = function(...args) { return [...this][name](...args)}));
+
+/**
  * @name empty
  * @memberof Array
  * @kind member
