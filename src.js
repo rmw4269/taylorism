@@ -38,7 +38,7 @@ Array.prototype.tuplify = function(tupleSize = 2, mode = "strict") {
 		let type = (typeof tupleSize).toLowerCase();
 		if (type == "object") {
 			try {
-				type = tupleSize.__proto__[Symbol.toStringTag];
+				type = Object.getPrototypeOf(tupleSize)[Symbol.toStringTag];
 			} catch {}
 		}
 		throw new TypeError(`Tuple size given is ${type.matches(/^(?:a|e|i|o|t)/i) ? "an" : "a"} ${type}, not an integer.`);
