@@ -138,3 +138,11 @@ String.prototype.replaceAllFor = function(...replacements) {
  * @param {?Number} max maximum value
  */
 Math.clamp = (value, min = Number.NEGATIVE_INFINITY, max = Number.POSITIVE_INFINITY) => Math.min(Math.max(min, value), max);
+
+/**
+ * This adds all of the given arguments together, so you’d better hope that they’re numbers. With no arguments, zero is returned;
+ *
+ * @param values values to add
+ * @return sum of all values
+ */
+Math.sum = (...values) => values.reduce((a, b) => a + b, 0);
