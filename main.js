@@ -19,7 +19,7 @@
  * @see Array.prototype.slice
  * @see Array.prototype.some
  */
-["every", "filter", "find", "findIndex", "flatMap", "includes", "indexOf", "lastIndexOf", "map", "reduce", "reduceRight", "reverse", "slice", "some"].forEach(name => Array.prototype[name] instanceof Function && Nodelist.prototype[name] === undefined && (NodeList.prototype[name] = function(...args) { return [...this][name](...args)}));
+window.NodeList && ["every", "filter", "find", "findIndex", "flatMap", "includes", "indexOf", "lastIndexOf", "map", "reduce", "reduceRight", "reverse", "slice", "some"].forEach(name => Array.prototype[name] instanceof Function && NodeList.prototype[name] === undefined && (NodeList.prototype[name] = function(...args) { return [...this][name](...args)}));
 
 /**
  * @name empty
