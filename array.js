@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * This filters out duplicate elements from the array, returning a new array of just the unique values.
  * If the comparator argument is given, it is used to determine uniqueness. The comparator is passed in two elements; only a truthy output indicates that the elements are identical.

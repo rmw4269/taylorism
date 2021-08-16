@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * This script searches through all objects and classes accessible from the global scope,
  * including prototypes and prototype chains. For every iterable object found that isn’t the
