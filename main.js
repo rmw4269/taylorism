@@ -1,5 +1,47 @@
 "use strict";
 
+/**
+ * @name innerNodeDepth
+ * @memberof Node.prototype
+ * @kind member
+ * @type number
+ * @readonly
+ *
+ * how many layers of child nodes this node has
+ *
+ * @see Node.prototype.childNodes
+ */
+
+window.Node && Object.defineProperty(Node.prototype, "innerNodeDepth", {get: function innerNodeDepth() {
+	if (this.childNodes.length === 0) { return 0; }
+	let list = [this];
+	let depth = 0;
+	while ((list = list.flatMap(child => [...child.childNodes])).length > 0 && ++depth !== 0);
+	list = undefined;
+	return --depth;
+}});
+
+/**
+ * @name innerElementDepth
+ * @memberof Element.prototype
+ * @kind member
+ * @type number
+ * @readonly
+ *
+ * how many layers of child elements this element has
+ *
+ * @see Element.prototype.children
+ * @see Element.prototype.childElementCount
+ */
+
+window.Element && Object.defineProperty(Element.prototype, "innerElementDepth", {get: function innerElementDepth() {
+	if (this.childElementCount === 0) { return 0; }
+	let list = [this];
+	let depth = 0;
+	while ((list = list.flatMap(child => [...child.children])).length > 0 && ++depth !== 0);
+	list = undefined;
+	return --depth;
+}});
 
 /**
  * @name empty
