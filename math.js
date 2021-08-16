@@ -55,3 +55,32 @@ Math.mode = (...values) => {
 		)
 	);
 };
+
+{
+	let logMap = new Map();
+	/**
+	 * This is a logarithm function with a flexible base.
+	 * Bases are cached to increase performance.
+	 *
+	 * @param {number} value
+	 * @param {number} base
+	 *
+	 * @return logarithm of `value` with the given base
+	 *
+	 * @see Math.log
+	 * @see Math.log2
+	 * @see Math.log10
+	 */
+	Math.logx = function logx(value, base) {
+		switch (base) {
+			case 10: return Math.log10(value);
+			case 2: return Math.log2(value);
+			case Math.E: return Math.log(value);
+			default:
+				if (!logMap.has(base)) {
+					logMap.set(base, Math.log2(base));
+				}
+				return Math.log2(value) / logMap.get(base);
+		}
+	};
+}
